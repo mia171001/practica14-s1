@@ -1,7 +1,7 @@
 const btnAPI = document.getElementById('btnAPI');
 const userInfo = document.getElementById('userInfo');
-const errorInfo = document.getElementById('errorInfo');
 const loader = document.getElementById('loader');
+const userError = document.getElementById('userError');
 
 btnAPI.addEventListener('click', readUsers);
 
@@ -30,6 +30,7 @@ function readUsers(e) {
 
 function printHTML(data) {
     userInfo.innerHTML = ''; // Limpiar cualquier contenido anterior
+    userInfo.style.display = 'block';
     data.forEach(user => {
         const userElement = document.createElement('div');
         userElement.textContent = `Nombre: ${user.name}, Email: ${user.email}`;
@@ -37,6 +38,10 @@ function printHTML(data) {
     });
 }
 
-function printError(error) {
-    console.error(error);
+function printError() {
+    userError.innerHTML = '';
+    userError.style.display = 'block';
+    const error2 = document.createElement('p');
+    error2.textContent = 'Error al cargar datos!!';
+    userError.appendChild(error2);
 }
